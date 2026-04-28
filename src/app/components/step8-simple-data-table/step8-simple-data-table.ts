@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { IPerson } from '../../shared/interfaces/person';
 import { sortBy } from 'lodash-es';
 
@@ -8,10 +8,9 @@ import { sortBy } from 'lodash-es';
   templateUrl: './step8-simple-data-table.html',
   styleUrl: './step8-simple-data-table.css',
 })
-
 export class Step8SimpleDataTable {
-  @Input() data:IPerson[] | undefined;
-  //@Output() personClicked = new EventEmitter<IPerson>()
+  @Input() data: IPerson[] | undefined;
+  @Output() personClicked = new EventEmitter<IPerson>()
 
   ngOnInit(){
     // console.log("NG ON INIT 1>>>", this.sortOrder);
@@ -20,6 +19,11 @@ export class Step8SimpleDataTable {
     // this.sortData('firstname');
     // /console.log("NG ON INIT 2>>>", this.sortOrder);
   }
+
+  // ngOnChanges(changes: SimpleChanges<IPerson>) {
+  //   // changes.userId contains the old and new value.
+  //   console.log("ON CHANGESs",changes);
+  // }
 
   sortOrder = {
     firstname: 'none',
@@ -40,7 +44,7 @@ export class Step8SimpleDataTable {
     console.log("SortOrder", this.sortOrder);
   }
 
-  //onPersonClicked(data: IPerson) {
-    //this.personClicked.emit(data);
-  //}
+  onPersonClicked(data: IPerson) {
+    this.personClicked.emit(data);
+  }
 }
