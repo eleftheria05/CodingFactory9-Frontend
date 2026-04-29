@@ -20,10 +20,14 @@ export class Step8SimpleDataTable {
     // /console.log("NG ON INIT 2>>>", this.sortOrder);
   }
 
-  // ngOnChanges(changes: SimpleChanges<IPerson>) {
-  //   // changes.userId contains the old and new value.
-  //   console.log("ON CHANGESs",changes);
-  // }
+  ngOnChanges(changes: SimpleChanges) {
+    // console.log("Changes>>",changes)
+    // console.log("Changes Data>>",changes['data'])
+    if (changes['data'] && this.data) {
+      // console.log("On If", this.data);
+      this.sortData('firstname')
+    }
+  }
 
   sortOrder = {
     firstname: 'none',
